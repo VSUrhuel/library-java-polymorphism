@@ -1,55 +1,85 @@
 # Library
-### Problem Created by Sir Jomari Joseph Barera - Instructor at VSU
 
-A **Novel** is a Book that can be borrowed only 10 times. It can only be borrowed if it is available based on the BorrowRecords. A LibraryMember can only borrow a maximum of 3 different books. When a LibraryMember borrows successfully any book, the BorrowRecords should be updated by adding a borrowing record.
+This GitHub repository contains a Java project that simulates a library system. The project includes various classes, such as `Novel`, `Book`, `LibraryMember`, `Author`, `BorrowRecords`, `FilipinianaMaterial`, `PhilippineIslandGroup`, `Genre`, and `Textbook`, each representing different entities and functionalities of the library system.
 
-![Library UML Diagram](https://photos.app.goo.gl/QWB4YDYTgAQsEPxG8)
+## Problem Statement
 
-Given the UML with relationships above, implement the **Novel** class with the following constraints:
+The problem was created by Sir Jomari Joseph Barera, an instructor at Visayas State University. The objective is to implement a library system with specific constraints and requirements.
 
-1. Implement the Novel class according to the UML above.
-2. Declare the attributes of the class Novel according to the UML.
-3. For the Novel constructor, initialize the title, mainAuthor, and publicationYear attributes using the constructor of the superclass. Then, initialize the genre attribute by its corresponding parameter while the numTimesBorrowed to 0.
-4. For the Novel copy constructor, call the copy constructor of the superclass with the parameter as argument followed by initializing the genre attribute with the parameter's genre attribute value while the numTimesBorrowed is assigned with the value 0.
-5. Implement the accessors according to the UML specification.
-6. Override the borrow method by applying the necessary procedures stated above. If the borrow transaction is executed successfully it must return true, otherwise return false. Update the necessary attributes based on the specification.
-Override the toString method using the code snippet below:
-	@Override
-	public String toString()
-	{
-	return "[N:" + this.numTimesBorrowed + "] " + super.toString();
-	}
+- A `Novel` is a type of book that can be borrowed only 10 times. It can only be borrowed if it is available based on the `BorrowRecords`.
 
-Implement the **Book** abstract class with the following contraints:
+- A `LibraryMember` can borrow a maximum of 3 different books. When a `LibraryMember` successfully borrows a book, the `BorrowRecords` should be updated by adding a borrowing record.
 
-1. Implement the Book abstract class according to the UML above.
-2. Declare the attributes of the abstract class Book according to the UML.
-3. For the Book constructor, initialize the authors collection and append the mainAuthor paramater object as its first author. Then, initialize the title and publicationYear attributes using their corresponding parameters.
-4. For the Book copy constructor, initialize the title and publicationYear attributes based on the equivalent attributes from the parameter object while for the authors attribute, just copy the object collection of the authors attribute from the parameter object.
-5. Implement the accessors according to the UML specification with the getAuthors method only returning a copy of the object held by the authors attribute.
-Implement the addAdditionalAuthor method by adding the parameter as an element of the authors attribute (object collection).
-6. Override the toString method using the code snippet below:
-	@Override
-	public String toString()
-	{
-	String text = this.title + "(" + this.publicationYear + ") by ";
-	for(Author a : this.authors)
-	{
-	text += a;
-	if(!a.equals(this.authors.get(this.authors.size()-1)))
-	text += ", ";
-	}
-	return text + " ";
-	}
+## UML Diagram
 
-For the **LibraryMember** class, a LibraryMember can borrow any books as long as it is Borrowable. A successful transaction of book borrowing by a LibraryMember will always depend on the result after executing the borrow method call from a Borrowable book. Implement the class with thefollowing constraints:
+The UML diagram provided in the repository illustrates the relationships between different classes and their attributes and methods.
 
-1. Implement the LibraryMember class according to the UML above.
-2. Declare the attributes of the class LibraryMember according to the UML.
-3. For the LibraryMember constructor, initialize its attributes based from the parameter given.
-4. Implement the accessor according to the UML specification.
-5. Implement the borrow method by applying the specifications stated above. If a borrow transaction succeeds, a true value will return, otherwise, it will return false.
+## Class Implementations
 
-Author, BorrowRecords, FilipinianaMaterial, PhilippineIslandGroup, Genre, and Textbook class were implemented based on the UML presented.  
+The following classes have been implemented based on the provided UML diagram:
 
-### This problem was a Mock Laboratory Exam at Java OOP for Final Laboratory Exam covering Inheritance and Polymorphism.
+## Novel Class
+
+The `Novel` class represents a novel book and includes the following features:
+
+- The attributes of the class are declared according to the UML diagram.
+
+- The constructor initializes the `title`, `mainAuthor`, and `publicationYear` attributes using the constructor of the superclass. The `genre` attribute is initialized with the corresponding parameter, and `numTimesBorrowed` is set to 0.
+
+- The copy constructor calls the copy constructor of the superclass and assigns the `genre` attribute with the value from the parameter, while `numTimesBorrowed` is set to 0.
+
+- The accessors are implemented as specified in the UML diagram.
+
+- The `borrow` method is overridden to apply the necessary procedures. If the borrow transaction is successful, it returns `true`; otherwise, it returns `false`. The necessary attributes are updated based on the specification. The `toString` method is overridden using the provided code snippet.
+
+```java
+@Override
+public String toString() {
+    return "[N:" + this.numTimesBorrowed + "] " + super.toString();
+}
+```
+
+## Book Abstract Class
+
+The `Book` abstract class represents a book and includes the following features:
+
+- The attributes of the abstract class are declared according to the UML diagram.
+
+- The constructor initializes the `authors` collection by appending the `mainAuthor` parameter object as its first author. The `title` and `publicationYear` attributes are then initialized using the corresponding parameters.
+
+- The copy constructor initializes the `title` and `publicationYear` attributes based on the equivalent attributes from the parameter object. For the `authors` attribute, the object collection is copied from the parameter object.
+
+- The accessors are implemented as specified in the UML diagram. The `getAuthors` method returns a copy of the object held by the `authors` attribute. The `addAdditionalAuthor` method adds the parameter as an element of the `authors` attribute (object collection).
+
+- The `toString` method is overridden using the provided code snippet.
+
+```java
+@Override
+public String toString() {
+    String text = this.title + "(" + this.publicationYear + ") by ";
+    for (Author a : this.authors) {
+        text += a;
+        if (!a.equals(this.authors.get(this.authors.size() - 1)))
+            text += ", ";
+    }
+    return text + " ";
+}
+```
+
+## LibraryMember Class
+
+The `LibraryMember` class represents a library member and includes the following features:
+
+- The attributes of the class are declared according to the UML diagram.
+
+- The constructor initializes the attributes based on the given parameter.
+
+- The accessors are implemented as specified in the UML diagram.
+
+- The `borrow` method is implemented based on the specifications provided. If a borrow transaction succeeds, it returns `true`; otherwise, it returns `false`.
+
+The remaining classes (`Author`, `BorrowRecords`, `FilipinianaMaterial`, `PhilippineIslandGroup`, `Genre`, and `Textbook`) were implemented based on the UML diagram.
+
+## Acknowledgment
+
+This project was created as a mock laboratory exam for Java OOP, covering concepts of inheritance and polymorphism. The problem and specifications were provided by Sir Jomari Joseph Barera, an instructor at Visayas State University.
